@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kirsch_app/kirsch_page/kir_main_page.dart';
+import 'package:kirsch_app/kirsch_page/kir_project_entrance.dart';
 
 import 'package:kirsch_app/main.dart';
 

@@ -8,23 +8,51 @@ import 'package:kirsch_app/kirsch_widget/kir_login_tab_bar.dart';
 class KirLoginPage extends StatelessWidget {
   final loginTitle = "Login Kir";
 
-  //todo 抽离分割各个部分的widget
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: EdgeInsets.fromLTRB(10, 100, 10, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+          body: Padding(
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          _languageSelection(),
           _loginTitle(loginTitle),
           _loginWarningText(),
           KirLoginTabBar(),
-          _toNextButton(),
+          _toNextButton(context),
           _registrationPrompt()
-        ],
-      ),
-    ));
+        ]),
+      )),
+    );
+  }
+
+  Widget _languageSelection() {
+    return Container(
+      alignment: Alignment.topRight,
+      padding: EdgeInsets.only(bottom: 25),
+      child: TextButton(
+          style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent)),
+          child: Container(
+            width: 95,
+            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Text(
+                "简体中文",
+                style: TextStyle(fontSize: 15, color: Colors.black54),
+              ),
+              Icon(
+                Icons.arrow_drop_down,
+                color: Colors.black54,
+              ),
+            ]),
+          ),
+          onPressed: () {
+            //todo 实现中英文切换,弹出菜单样式应是,选择语言则勾选选择的语言,点击完成完成选择  todo 后续国际化所有Text
+          }),
+    );
   }
 
   Widget _loginTitle(String title) {
@@ -62,19 +90,20 @@ class KirLoginPage extends StatelessWidget {
         recognizer: gestureRecognizer);
   }
 
-  Widget _toNextButton() {
+  Widget _toNextButton(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 20),
       height: 40,
       width: double.infinity,
       child: FlatButton(
+        splashColor: Colors.transparent,
         color: Colors.lightBlue,
         child: Text(
           "下一步",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 17),
         ),
         onPressed: () {
-          //...
+          Navigator.pushNamed(context, "/kirMainNavigationPage");
         },
       ),
     );
@@ -87,11 +116,11 @@ class KirLoginPage extends StatelessWidget {
         TextSpan(children: [
           TextSpan(
             text: "还没有账号?",
-            style: TextStyle(fontSize: 15, color: Colors.black54),
+            style: TextStyle(fontSize: 14, color: Colors.black54),
           ),
           TextSpan(
             text: "立即注册",
-            style: TextStyle(fontSize: 15, color: Colors.lightBlue),
+            style: TextStyle(fontSize: 14, color: Colors.lightBlue),
           )
         ]),
       ),

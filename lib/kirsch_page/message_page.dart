@@ -19,16 +19,28 @@ class MessagePage extends StatelessWidget {
             },
           ),
         ),
-        title: Text('Message'),
+        title: Text(
+          'Message',
+          style: TextStyle(),
+        ),
         actions: [
-          GradientButton(
-            colors: [Colors.red, Colors.teal],
-            height: 50.0,
-            child: Icon(Icons.ac_unit),
-            radius: 20.0,
-          )
+          _messagePageCloudPhoneCallButton(),
+          _messagePageAddButton(),
         ],
       ),
     );
   }
+
+  _messagePageCloudPhoneCallButton() => CupertinoButton(
+      child: Icon(Icons.backup_outlined, color: Colors.white),
+      onPressed: () {
+        //...
+      });
+
+  _messagePageAddButton() => CupertinoButton(
+        child: Icon(Icons.add_circle_outline, color: Colors.white),
+        onPressed: () {
+          //todo messagePageAdd
+        },
+      );
 }

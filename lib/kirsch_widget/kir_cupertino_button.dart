@@ -2,31 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //todo 实现自定义的通用CupertinoButton Icon onPressed color size
-class KirCupertinoButton extends StatelessWidget {
-  @required
-  final icon;
-  @required
-  final onPressed;
-  final color;
 
-  const KirCupertinoButton({this.icon, this.onPressed, this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-      ),
-      child: CupertinoButton(
-        color: this.color,
-        child: Icon(this.icon),
-        onPressed: () {
-          this.onPressed();
-        },
-      ),
-    );
-  }
+Widget kirCupertinoButton(Widget child) {
+  return Theme(
+    data: ThemeData(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+    ),
+    child: child,
+  );
 }
 
 //todo 可参照demo
